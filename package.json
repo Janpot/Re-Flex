@@ -2,14 +2,16 @@
   "name": "react-reflex",
   "version": "1.1.5",
   "description": "Flex layout component for advanced React web applications",
-  "main": "dist/lib/index.min.js",
+  "main": "dist/es/index.js",
   "types": "./index.d.ts",
   "scripts": {
     "build-demo-dev": "webpack --watch --config ./webpack/demo/development.webpack.config",
     "build-demo": "webpack --config ./webpack/demo/production.webpack.config",
     "build-lib-dev": "webpack --config ./webpack/lib/development.webpack.config",
     "build-lib": "webpack --config ./webpack/lib/production.webpack.config",
-    "build": "npm run build-lib && npm run build-demo"
+    "build-es": "babel src/lib --presets react,es2015,stage-0 --out-dir dist/es",
+    "build": "npm run build-es && npm run build-lib && npm run build-demo",
+    "prepublish": "npm run build"
   },
   "author": "Philippe Leefsma",
   "license": "MIT",
@@ -25,6 +27,7 @@
     "url": "git+https://github.com/leefsmp/Re-Flex.git"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-loader": "^6.2.5",
